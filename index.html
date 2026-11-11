@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pauta Execom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--verde:#0e5f5a;--sup:#fbfaf8;--tinta:#211e1a;--graf:#57534a;--linha:#e4e0d8;--erro:#8a3a2e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--sup);color:var(--tinta);font:16px/1.55 "Open Sans",sans-serif;padding:0 16px 120px}
+.pg{max-width:760px;margin:0 auto}
+h1,h2{font-family:Fraunces,serif;font-weight:600;font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0;line-height:1.2}
+h1{font-size:31px;margin:20px 0 10px}
+h2{font-size:25px;margin:0 0 4px}
+.sub{color:var(--graf);max-width:62ch}
+.topo{display:flex;justify-content:space-between;align-items:center;padding-top:32px}
+.topo img{width:120px}
+.tag{font-size:12px;color:var(--graf);text-transform:uppercase;letter-spacing:.06em}
+.barra{position:sticky;top:0;background:var(--sup);padding:12px 0;z-index:5;border-bottom:1px solid var(--linha);margin:24px 0 8px}
+.barra .t{font-size:14px;color:var(--graf);display:flex;justify-content:space-between}
+.barra .trilho{height:6px;background:var(--linha);border-radius:3px;margin-top:6px;overflow:hidden}
+.barra .enchido{height:100%;background:var(--verde);width:0;transition:width .3s}
+section{margin-top:40px}
+.fase{font-size:12px;font-weight:700;color:var(--verde);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.fluxo{list-style:none;margin-top:20px;border-left:2px solid var(--verde);padding-left:24px}
+.fluxo>li{position:relative;padding:14px 0 18px}
+.fluxo>li:before{content:attr(data-n);position:absolute;left:-39px;top:12px;width:28px;height:28px;border-radius:50%;background:var(--verde);color:var(--sup);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.fluxo b{display:block}
+.fluxo .q{color:var(--graf);font-size:14px}
+.trava .aviso{display:block;font-size:12px;font-weight:700;color:var(--verde);text-transform:uppercase;letter-spacing:.05em}
+.sn{display:flex;gap:8px;margin-top:10px}
+.sn button{font:inherit;font-size:14px;border:1px solid var(--linha);background:#fff;border-radius:6px;padding:6px 16px;cursor:pointer;color:var(--tinta)}
+.sn button.on{background:var(--verde);border-color:var(--verde);color:var(--sup)}
+.sn button.on.nao{background:var(--erro);border-color:var(--erro)}
+.corrige{display:none;margin-top:12px;gap:10px}
+.corrige.ab{display:grid}
+label{display:block;font-weight:600;font-size:15px;margin-bottom:6px}
+label small{display:block;font-weight:400;color:var(--graf);font-size:14px}
+textarea{width:100%;font:inherit;font-size:15px;border:1px solid var(--linha);border-radius:6px;padding:10px 12px;background:#fff;color:var(--tinta);min-height:64px;resize:vertical}
+textarea:focus{outline:2px solid var(--verde);outline-offset:1px;border-color:var(--verde)}
+.qs{display:grid;gap:22px;margin-top:20px}
+.qs .n{color:var(--verde);font-weight:700;margin-right:4px}
+.extra{margin-top:24px;background:#fff;border:1px dashed var(--verde);border-radius:8px;padding:16px}
+.troca{background:var(--verde);color:var(--sup);border-radius:10px;padding:26px 24px;margin-top:48px}
+.troca h2{color:var(--sup);margin-bottom:8px}
+.troca p{max-width:60ch}
+.acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.acoes button{font:inherit;font-weight:600;border:0;border-radius:6px;padding:12px 18px;cursor:pointer;background:var(--sup);color:var(--verde)}
+.acoes button.sec{background:transparent;color:var(--sup);border:1px solid var(--sup)}
+.aviso-ok{font-size:14px;margin-top:10px;min-height:20px}
+.rodape{margin-top:28px;font-size:12px;color:var(--graf)}
+</style>
+</head>
+<body><div class="pg">
+
+<div class="topo"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xOC4wIC0xNDAwLjAgNzA3Ni4wIDE0MjcuMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJBTFVYSUEiPgo8ZyB0cmFuc2Zvcm09InNjYWxlKDEsLTEpIj4KPHBhdGggZD0iTTM1NiA3UTM1NiA1IDM1NC4wIDIuNVEzNTIgMCAzNDcgMEgtNFEtOSAwIC0xMS4wIDIuNVEtMTMgNSAtMTMgN1EtMTMgMTIgLTkuNSAxMy41US02IDE1IC0zIDE2TDI2IDI1UTYzIDM4IDEwMi4wIDgwLjBRMTQxIDEyMiAxNjUgMjA0TDQ2OCAxMjUxUTQ4MSAxMjk5IDQ2OS41IDEzMjguMFE0NTggMTM1NyA0MjkgMTM3NFE0MTUgMTM4NSA0MDguNSAxMzg3LjBRNDAyIDEzODkgNDAyIDEzOTNRNDAyIDEzOTcgNDA0LjUgMTM5OC41UTQwNyAxNDAwIDQxMiAxNDAwSDg3NVE4ODAgMTQwMCA4ODIuNSAxMzk4LjVRODg1IDEzOTcgODg1IDEzOTNRODg1IDEzODkgODc5LjAgMTM4NS41UTg3MyAxMzgyIDg1OCAxMzc2UTg0MCAxMzcxIDgzNS4wIDEzNjAuMFE4MzAgMTM0OSA4NDAgMTMxOUwxMjM0IDY5UTEyNDEgNDcgMTI1NS4wIDM0LjVRMTI2OSAyMiAxMjg5IDE4UTEyOTYgMTYgMTI5OS4wIDE0LjBRMTMwMiAxMiAxMzAyIDdRMTMwMiA1IDEyOTkuNSAyLjVRMTI5NyAwIDEyOTIgMEg3ODRRNzc5IDAgNzc2LjUgMi41UTc3NCA1IDc3NCA3UTc3NCAxMiA3NzcuNSAxMy4wUTc4MSAxNCA3ODggMTZMODI5IDI1UTg1NiAzMiA4NjEuMCA0NS41UTg2NiA1OSA4NTggODZMNDg2IDEyNjZMNTE0IDEzMzZMMTg2IDE5OVExNzMgMTU0IDE4Ny41IDExOS41UTIwMiA4NSAyMzYuNSA2MS41UTI3MSAzOCAzMTkgMjNMMzQ1IDE2UTM1MSAxNCAzNTMuNSAxMi41UTM1NiAxMSAzNTYgN1pNLTE4IDQ1MyA3NzIgNjU0VjU1NUwtMTggNDQ2WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wLDApIiBmaWxsPSIjMGU1ZjVhIiBvcGFjaXR5PSIwLjQ1Ii8+CjxwYXRoIGQ9Ik02MDAgMTM4NiA1MTkgMTM3NFE1MDAgMTM3MSA0OTAuMCAxMzY0LjVRNDgwIDEzNTggNDgwIDEzNDZWNjBRNDgwIDM4IDQ5Mi41IDI4LjVRNTA1IDE5IDUyOSAxOUg3MTZRNzY0IDE5IDgwOC41IDM4LjBRODUzIDU3IDg5Ny41IDEwNy4wUTk0MiAxNTcgOTg5IDI1MEwxMDg3IDQ0NFExMDg5IDQ0OCAxMDkxLjUgNDUwLjVRMTA5NCA0NTMgMTA5NyA0NTJRMTEwMSA0NTEgMTEwMi41IDQ0Ny4wUTExMDQgNDQzIDExMDIgNDM2TDEwMDggLTZRMTAwNSAtMjAgMTAwMy41IC0yMy41UTEwMDIgLTI3IDk5OSAtMjdROTkzIC0yNyA5ODAuMCAtMjAuMFE5NjcgLTEzIDk0Ni4wIC02LjVROTI1IDAgODk1IDBINzhRNzMgMCA3MC41IDIuMFE2OCA0IDY4IDZRNjggMTIgODAgMTRMMTYxIDI2UTE4MSAzMCAxOTAuNSAzNi4wUTIwMCA0MiAyMDAgNTRWMTM0NlEyMDAgMTM1OCAxOTAuNSAxMzY0LjVRMTgxIDEzNzEgMTYxIDEzNzRMODAgMTM4NlE2OCAxMzg4IDY4IDEzOTRRNjggMTM5NiA3MC41IDEzOTguMFE3MyAxNDAwIDc4IDE0MDBINjAyUTYwNyAxNDAwIDYwOS41IDEzOTguMFE2MTIgMTM5NiA2MTIgMTM5NFE2MTIgMTM4OCA2MDAgMTM4NloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyOTguMCwwKSIgZmlsbD0iIzBlNWY1YSIgb3BhY2l0eT0iMS4wIi8+CjxwYXRoIGQ9Ik0xMTMzIDYwNSAxMDk2IDEyMzVRMTA5MyAxMjg4IDEwNjguMCAxMzIwLjVRMTA0MyAxMzUzIDk4NiAxMzY5TDkxNCAxMzg2UTkwOCAxMzg4IDkwNi4wIDEzODkuNVE5MDQgMTM5MSA5MDQgMTM5NFE5MDQgMTM5NiA5MDYuMCAxMzk4LjBROTA4IDE0MDAgOTEyIDE0MDBIMTI4M1ExMjg3IDE0MDAgMTI4OS4wIDEzOTguMFExMjkxIDEzOTYgMTI5MSAxMzk0UTEyOTEgMTM5MSAxMjg4LjAgMTM4OS4wUTEyODUgMTM4NyAxMjc5IDEzODVMMTIxOCAxMzY3UTExNzAgMTM1MyAxMTQyLjAgMTMxOC41UTExMTQgMTI4NCAxMTE3IDEyMzZMMTE1MyA2MTVRMTE1NyA1NjEgMTE2MC4wIDUwOC4wUTExNjMgNDU1IDExNjMgNDAwUTExNjMgMjgzIDExMTguMCAxODYuNVExMDczIDkwIDk3My4wIDMzLjBRODczIC0yNCA3MDggLTI0UTUyMyAtMjQgNDAxLjUgMjguNVEyODAgODEgMjIxLjUgMTcyLjBRMTYzIDI2MyAxNjMgMzc5UTE2MyA0MDggMTY1LjAgNDU0LjBRMTY3IDUwMCAxNzAuMCA1NDYuNVExNzMgNTkzIDE3NSA2MjZMMjE5IDEzNDZRMjIwIDEzNTggMjEwLjAgMTM2NC4wUTIwMCAxMzcwIDE4MCAxMzc0TDk5IDEzODZRODcgMTM4OSA4NyAxMzk0UTg3IDEzOTYgODkuNSAxMzk4LjBROTIgMTQwMCA5NyAxNDAwSDYyMVE2MjUgMTQwMCA2MjcuNSAxMzk4LjBRNjMwIDEzOTYgNjMwIDEzOTRRNjMwIDEzOTEgNjI3LjUgMTM4OS41UTYyNSAxMzg4IDYxOCAxMzg2TDUzNCAxMzc0UTUxNCAxMzcwIDUwNS4wIDEzNjQuMFE0OTYgMTM1OCA0OTUgMTM0NEw0NTMgNjMzUTQ0OCA1NTYgNDQ3LjUgNDkxLjVRNDQ3IDQyNyA0NDcgMzg0UTQ0NyAxODcgNTMxLjUgOTUuNVE2MTYgNCA3NjMgNFE4NzUgNCA5NjAuNSA1MC41UTEwNDYgOTcgMTA5My41IDE4NC4wUTExNDEgMjcxIDExNDEgMzkwUTExNDEgNDU3IDExMzguMCA1MDkuMFExMTM1IDU2MSAxMTMzIDYwNVoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI0MTIuMCwwKSIgZmlsbD0iIzBlNWY1YSIgb3BhY2l0eT0iMS4wIi8+CjxwYXRoIGQ9Ik0xMTU0IDg2UTExNzAgNTkgMTE4Ny4wIDQ1LjBRMTIwNCAzMSAxMjI0LjAgMjQuNVExMjQ0IDE4IDEyNjcgMTRRMTI3NCAxMyAxMjc2LjUgMTEuNVExMjc5IDEwIDEyNzkgNlExMjc5IDQgMTI3Ny4wIDIuMFExMjc1IDAgMTI3MSAwSDczMVE3MjYgMCA3MjMuNSAyLjBRNzIxIDQgNzIxIDdRNzIxIDExIDcyNC41IDEyLjVRNzI4IDE0IDczNyAxNVE3OTAgMjIgODE0LjUgMzEuNVE4MzkgNDEgODQyLjUgNTUuNVE4NDYgNzAgODMzIDkyTDE1MSAxMzIxUTEzNyAxMzQ2IDEyMS4wIDEzNTkuMFExMDUgMTM3MiA4Ni4wIDEzNzcuNVE2NyAxMzgzIDQzIDEzODdRMzYgMTM4OCAzNC4wIDEzODkuNVEzMiAxMzkxIDMyIDEzOTRRMzIgMTM5NyAzNS4wIDEzOTguNVEzOCAxNDAwIDQxIDE0MDBINTgyUTU4NyAxNDAwIDU4OS4wIDEzOTguNVE1OTEgMTM5NyA1OTEgMTM5NFE1OTEgMTM5MSA1ODguNSAxMzg5LjVRNTg2IDEzODggNTc5IDEzODZMNDg4IDEzNzdRNDYyIDEzNzQgNDU3LjUgMTM2MS4wUTQ1MyAxMzQ4IDQ2NCAxMzI3Wk03MjAgNzM0IDcwNCA3MzkgOTk2IDEyMTJRMTAzNyAxMjc5IDEwMTYuMCAxMzIxLjVROTk1IDEzNjQgOTM2IDEzNzdMODgyIDEzODVRODc3IDEzODYgODc1LjAgMTM4OC4wUTg3MyAxMzkwIDg3MyAxMzkzUTg3MyAxMzk1IDg3NS4wIDEzOTcuMFE4NzcgMTM5OSA4ODEgMTM5OUgxMjI4UTEyMzYgMTM5OSAxMjM2IDEzOTNRMTIzNiAxMzkwIDEyMzMuMCAxMzg4LjBRMTIzMCAxMzg2IDEyMjQgMTM4NFExMTQxIDEzNTcgMTA5Ny4wIDEzMTMuMFExMDUzIDEyNjkgMTAxNCAxMjA4Wk01ODcgNzI1IDYwMyA3MTcgMjY1IDE3NFEyMzAgMTE4IDI0Ny41IDc4LjVRMjY1IDM5IDMyNyAyNEwzODQgMTVRMzg5IDEzIDM5MS41IDExLjVRMzk0IDEwIDM5NCA3UTM5NCA0IDM5MS41IDIuMFEzODkgMCAzODUgMEgzMlEyOCAwIDI1LjUgMi4wUTIzIDQgMjMgN1EyMyAxMCAyNS41IDExLjVRMjggMTMgMzMgMTRROTIgMzAgMTI4LjAgNTAuMFExNjQgNzAgMTkxLjUgMTAyLjBRMjE5IDEzNCAyNTEgMTg2WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzczNi4wLDApIiBmaWxsPSIjMGU1ZjVhIiBvcGFjaXR5PSIxLjAiLz4KPHBhdGggZD0iTTU0NCA1NlE1NDQgNDQgNTU1LjAgMzcuNVE1NjYgMzEgNTg2IDI3TDY1NSAxNlE2NjkgMTQgNjY5IDhRNjY5IDQgNjY2LjUgMi4wUTY2NCAwIDY1OCAwSDc2UTcwIDAgNjcuNSAyLjBRNjUgNCA2NSA4UTY1IDE0IDc5IDE2TDE0OCAyN1ExNjkgMzEgMTc5LjUgMzcuNVExOTAgNDQgMTkwIDU2VjEzNDRRMTkwIDEzNTYgMTc5LjUgMTM2Mi41UTE2OSAxMzY5IDE0OCAxMzczTDc5IDEzODRRNjUgMTM4NiA2NSAxMzkzUTY1IDEzOTYgNjcuNSAxMzk4LjBRNzAgMTQwMCA3NiAxNDAwSDY1OFE2NjQgMTQwMCA2NjYuNSAxMzk4LjBRNjY5IDEzOTYgNjY5IDEzOTNRNjY5IDEzODYgNjU1IDEzODRMNTg2IDEzNzNRNTY2IDEzNjkgNTU1LjAgMTM2Mi41UTU0NCAxMzU2IDU0NCAxMzQ0WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTAyMi4wLDApIiBmaWxsPSIjMGU1ZjVhIiBvcGFjaXR5PSIwLjQ1Ii8+CjxwYXRoIGQ9Ik0zNTYgN1EzNTYgNSAzNTQuMCAyLjVRMzUyIDAgMzQ3IDBILTRRLTkgMCAtMTEuMCAyLjVRLTEzIDUgLTEzIDdRLTEzIDEyIC05LjUgMTMuNVEtNiAxNSAtMyAxNkwyNiAyNVE2MyAzOCAxMDIuMCA4MC4wUTE0MSAxMjIgMTY1IDIwNEw0NjggMTI1MVE0ODEgMTI5OSA0NjkuNSAxMzI4LjBRNDU4IDEzNTcgNDI5IDEzNzRRNDE1IDEzODUgNDA4LjUgMTM4Ny4wUTQwMiAxMzg5IDQwMiAxMzkzUTQwMiAxMzk3IDQwNC41IDEzOTguNVE0MDcgMTQwMCA0MTIgMTQwMEg4NzVRODgwIDE0MDAgODgyLjUgMTM5OC41UTg4NSAxMzk3IDg4NSAxMzkzUTg4NSAxMzg5IDg3OS4wIDEzODUuNVE4NzMgMTM4MiA4NTggMTM3NlE4NDAgMTM3MSA4MzUuMCAxMzYwLjBRODMwIDEzNDkgODQwIDEzMTlMMTIzNCA2OVExMjQxIDQ3IDEyNTUuMCAzNC41UTEyNjkgMjIgMTI4OSAxOFExMjk2IDE2IDEyOTkuMCAxNC4wUTEzMDIgMTIgMTMwMiA3UTEzMDIgNSAxMjk5LjUgMi41UTEyOTcgMCAxMjkyIDBINzg0UTc3OSAwIDc3Ni41IDIuNVE3NzQgNSA3NzQgN1E3NzQgMTIgNzc3LjUgMTMuMFE3ODEgMTQgNzg4IDE2TDgyOSAyNVE4NTYgMzIgODYxLjAgNDUuNVE4NjYgNTkgODU4IDg2TDQ4NiAxMjY2TDUxNCAxMzM2TDE4NiAxOTlRMTczIDE1NCAxODcuNSAxMTkuNVEyMDIgODUgMjM2LjUgNjEuNVEyNzEgMzggMzE5IDIzTDM0NSAxNlEzNTEgMTQgMzUzLjUgMTIuNVEzNTYgMTEgMzU2IDdaTS0xOCA0NTMgNzcyIDY1NFY1NTVMLTE4IDQ0NloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU3NTYuMCwwKSIgZmlsbD0iIzBlNWY1YSIgb3BhY2l0eT0iMC40NSIvPgo8L2c+Cjwvc3ZnPgo=" alt="Aluxia"><span class="tag">Para a Dani · Execom</span></div>
+
+<h1>A pauta, do jeito que você faz</h1>
+<p class="sub">Complemento do mapeamento que você respondeu. Faltam 8 respostas sobre a pauta. Leva 5 minutos.</p>
+
+<div class="barra"><div class="t"><span id="txtProg">0 de 0 respondidas</span><span>~5 min</span></div><div class="trilho"><div class="enchido" id="prog"></div></div></div>
+
+<section>
+  <div class="fase">Fase 1</div>
+  <h2>O caminho da demanda</h2>
+  <p class="sub">Confirme ou corrija cada passo.</p>
+  <ol class="fluxo" id="fluxo"></ol>
+  <div class="extra">
+    <label for="f_falta">Falta algum passo? Qual, e em que ponto?</label>
+    <textarea id="f_falta" data-q="Fase 1 · Passos que faltaram"></textarea>
+  </div>
+</section>
+
+<div id="blocos"></div>
+
+<div class="troca">
+  <h2>Próximo passo</h2>
+  <p>Envie também 1 card de briefing real e o pedido do cliente que o originou. Pode ocultar o nome do cliente. Devolvemos o mesmo card montado automaticamente.</p>
+  <div class="acoes">
+    <button id="btnWpp">Enviar respostas pelo WhatsApp para o Dudu</button>
+    <button id="btnCopiar" class="sec">Copiar respostas</button>
+  </div>
+  <div class="aviso-ok" id="okMsg"></div>
+</div>
+
+<p class="rodape">Aluxia · complemento do mapeamento, não é proposta comercial.</p>
+</div>
+
+<script>
+const PASSOS=[
+ {t:"O cliente aprova o planejamento do mês",q:"Define o que será produzido no período."},
+ {t:"As demandas chegam ao atendimento",q:"Vêm do planejamento e de pedidos avulsos do cliente."},
+ {t:"O atendimento coloca a demanda na pauta",q:"Demora, mesmo com o planejamento aprovado.",trava:1},
+ {t:"O atendimento escreve o briefing",q:"São 5 a 6 cards por dia."},
+ {t:"A criação recebe o card e produz",q:"Produz a peça a partir do card."}
+];
+const BLOCOS=[
+ {f:"Fase 2",h:"O detalhe da pauta",qs:[
+  ["Em que dia e horário você monta a pauta?","Se não há horário fixo, diga o que dispara a montagem."],
+  ["De onde vem o conteúdo de cada demanda?","Cite os canais, do mais usado ao menos usado."],
+  ["Quem monta a pauta, e quantas pessoas fazem isso?"],
+  ["Em que ferramenta a pauta fica, e quais campos cada item tem?"],
+  ["Quantos minutos leva para pautar uma demanda, e quantas você pauta por dia?"],
+  ["Qual é o principal motivo do atraso da pauta?"],
+  ["Quantos minutos leva para escrever um card de briefing?"],
+  ["Qual informação mais falta no card quando a criação volta com dúvida?"]]}
+];
+
+const K="execom-pauta-dani-v3";let st={};
+try{st=JSON.parse(localStorage.getItem(K)||"{}")}catch(e){}
+function salva(){try{localStorage.setItem(K,JSON.stringify(st))}catch(e){}conta()}
+
+const fl=document.getElementById("fluxo");
+PASSOS.forEach((p,i)=>{
+ const id="p"+i,li=document.createElement("li");li.dataset.n=i+1;if(p.trava)li.className="trava";
+ li.innerHTML=(p.trava?'<span class="aviso">Gargalo apontado no mapeamento</span>':"")+
+ `<b>${p.t}</b><span class="q">${p.q}</span>
+ <div class="sn"><span class="q" style="align-self:center;margin-right:4px">Está certo?</span><button data-v="Sim">Sim</button><button data-v="Não" class="nao">Não</button></div>
+ <div class="corrige"><div><label for="${id}e">O que está errado?</label><textarea id="${id}e" data-q="Fase 1 · Passo ${i+1} · O que está errado"></textarea></div>
+ <div><label for="${id}c">Como é de verdade?<small>Quem faz, onde e quando.</small></label><textarea id="${id}c" data-q="Fase 1 · Passo ${i+1} · Como é de verdade"></textarea></div></div>`;
+ const bs=li.querySelectorAll(".sn button"),cr=li.querySelector(".corrige");
+ const aplica=v=>{bs.forEach(b=>b.classList.toggle("on",b.dataset.v===v));cr.classList.toggle("ab",v==="Não")};
+ bs.forEach(b=>b.onclick=()=>{st[id]=b.dataset.v;aplica(b.dataset.v);salva()});
+ if(st[id])aplica(st[id]);
+ fl.appendChild(li);
+});
+
+const bl=document.getElementById("blocos");let n=0;
+BLOCOS.forEach(B=>{
+ const s=document.createElement("section");
+ s.innerHTML=`<div class="fase">${B.f}</div><h2>${B.h}</h2><div class="qs"></div>`;
+ const qs=s.querySelector(".qs");
+ B.qs.forEach(([q,d])=>{n++;const id="q"+n,div=document.createElement("div");
+  div.innerHTML=`<label for="${id}"><span class="n">${n}.</span>${q}${d?`<small>${d}</small>`:""}</label><textarea id="${id}" data-q="${n}. ${q}"></textarea>`;
+  qs.appendChild(div)});
+ bl.appendChild(s);
+});
+
+document.querySelectorAll("textarea").forEach(t=>{
+ if(st[t.id])t.value=st[t.id];
+ t.addEventListener("input",()=>{st[t.id]=t.value;salva()});
+});
+
+function conta(){
+ const tas=[...document.querySelectorAll(".qs textarea")];
+ const tot=PASSOS.length+tas.length;
+ const feitas=PASSOS.filter((p,i)=>st["p"+i]).length+tas.filter(t=>t.value.trim()).length;
+ document.getElementById("txtProg").textContent=`${feitas} de ${tot} respondidas`;
+ document.getElementById("prog").style.width=(100*feitas/tot)+"%";
+}
+conta();
+
+function texto(){
+ const L=["Respostas da Dani · processo de pauta Execom",""];
+ L.push("FASE 1 · CAMINHO");
+ PASSOS.forEach((p,i)=>{const v=st["p"+i]||"sem resposta";L.push(`${i+1}. ${p.t}: ${v}`);
+  if(v==="Não"){L.push("   Errado: "+(st["p"+i+"e"]||"-"));L.push("   Como é: "+(st["p"+i+"c"]||"-"))}});
+ if(st.f_falta)L.push("Passos que faltaram: "+st.f_falta);
+ let atual="";
+ document.querySelectorAll("#blocos section").forEach(s=>{
+  L.push("",s.querySelector(".fase").textContent.toUpperCase()+" · "+s.querySelector("h2").textContent.toUpperCase());
+  s.querySelectorAll("textarea").forEach(t=>L.push(t.dataset.q,"   "+(t.value.trim()||"-")));
+ });
+ return L.join("\n");
+}
+const ok=document.getElementById("okMsg");
+document.getElementById("btnWpp").onclick=()=>{window.open("https://wa.me/5581998131581?text="+encodeURIComponent(texto()),"_blank")};
+document.getElementById("btnCopiar").onclick=async()=>{
+ try{await navigator.clipboard.writeText(texto());ok.textContent="Copiado. É só colar na conversa."}
+ catch(e){ok.textContent="Não deu para copiar automaticamente. Use o botão do WhatsApp."}
+};
+</script>
+</body>
+</html>
