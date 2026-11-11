@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pauta Execom</title>
+<meta name="description" content="Complemento do mapeamento: 8 perguntas sobre a pauta. Leva 5 minutos.">
+<meta property="og:title" content="A pauta, do jeito que você faz">
+<meta property="og:description" content="Complemento do mapeamento: 8 perguntas sobre a pauta. Leva 5 minutos.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -118,8 +123,8 @@ PASSOS.forEach((p,i)=>{
  li.innerHTML=(p.trava?'<span class="aviso">Gargalo apontado no mapeamento</span>':"")+
  `<b>${p.t}</b><span class="q">${p.q}</span>
  <div class="sn"><span class="q" style="align-self:center;margin-right:4px">Está certo?</span><button data-v="Sim">Sim</button><button data-v="Não" class="nao">Não</button></div>
- <div class="corrige"><div><label for="${id}e">O que está errado?</label><textarea id="${id}e" data-q="Fase 1 · Passo ${i+1} · O que está errado"></textarea></div>
- <div><label for="${id}c">Como é de verdade?<small>Quem faz, onde e quando.</small></label><textarea id="${id}c" data-q="Fase 1 · Passo ${i+1} · Como é de verdade"></textarea></div></div>`;
+ <div class="corrige"><div><label for="${id}e">O que está errado?</label><textarea id="${id}e" data-q="Passo ${i+1} - o que está errado"></textarea></div>
+ <div><label for="${id}c">Como é de verdade?<small>Quem faz, onde e quando.</small></label><textarea id="${id}c" data-q="Passo ${i+1} - como é de verdade"></textarea></div></div>`;
  const bs=li.querySelectorAll(".sn button"),cr=li.querySelector(".corrige");
  const aplica=v=>{bs.forEach(b=>b.classList.toggle("on",b.dataset.v===v));cr.classList.toggle("ab",v==="Não")};
  bs.forEach(b=>b.onclick=()=>{st[id]=b.dataset.v;aplica(b.dataset.v);salva()});
@@ -153,23 +158,23 @@ function conta(){
 conta();
 
 function texto(){
- const L=["Respostas da Dani · processo de pauta Execom",""];
- L.push("FASE 1 · CAMINHO");
+ const L=["*Respostas da Dani - pauta Execom*",""];
+ L.push("*FASE 1 - CAMINHO*");
  PASSOS.forEach((p,i)=>{const v=st["p"+i]||"sem resposta";L.push(`${i+1}. ${p.t}: ${v}`);
   if(v==="Não"){L.push("   Errado: "+(st["p"+i+"e"]||"-"));L.push("   Como é: "+(st["p"+i+"c"]||"-"))}});
  if(st.f_falta)L.push("Passos que faltaram: "+st.f_falta);
- let atual="";
  document.querySelectorAll("#blocos section").forEach(s=>{
-  L.push("",s.querySelector(".fase").textContent.toUpperCase()+" · "+s.querySelector("h2").textContent.toUpperCase());
+  L.push("","*"+s.querySelector(".fase").textContent.toUpperCase()+" - "+s.querySelector("h2").textContent.toUpperCase()+"*");
   s.querySelectorAll("textarea").forEach(t=>L.push(t.dataset.q,"   "+(t.value.trim()||"-")));
  });
  return L.join("\n");
 }
 const ok=document.getElementById("okMsg");
-document.getElementById("btnWpp").onclick=()=>{window.open("https://wa.me/5581998131581?text="+encodeURIComponent(texto()),"_blank")};
+document.getElementById("btnWpp").onclick=()=>{location.href="https://api.whatsapp.com/send?phone=5581998131581&text="+encodeURIComponent(texto().normalize("NFC"))};
 document.getElementById("btnCopiar").onclick=async()=>{
  try{await navigator.clipboard.writeText(texto());ok.textContent="Copiado. É só colar na conversa."}
- catch(e){ok.textContent="Não deu para copiar automaticamente. Use o botão do WhatsApp."}
+ catch(e){const t=document.createElement("textarea");t.value=texto();document.body.appendChild(t);t.select();
+  try{document.execCommand("copy");ok.textContent="Copiado. É só colar na conversa."}catch(x){ok.textContent="Não deu para copiar. Use o botão do WhatsApp."}t.remove()}
 };
 </script>
 </body>
